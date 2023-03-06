@@ -47,7 +47,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   // console.log("userDocRef",userDocRef);
   const userSnapShot = await getDoc(userDocRef);
   // console.log("userSnapShot", userSnapShot);
-  // console.log("userSnapShot check if user exist in firebase db", userSnapShot.exists());
+  console.log("userSnapShot check if user exist in firebase db", userSnapShot.exists());
 
 
   // If user data does not exist
