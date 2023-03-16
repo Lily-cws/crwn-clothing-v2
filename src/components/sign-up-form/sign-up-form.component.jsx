@@ -34,9 +34,7 @@ const SignUpForm = () => {
         email,
         password
       );
-      console.log("user",user);
       await createUserDocumentFromAuth(user, {displayName})
-      console.log("user 2",user);
       resetFormFields();
 
     }catch(error){
@@ -58,13 +56,14 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-      <h2>Dont have an account ?</h2>
+      <h2>I do not have an account</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
           type="text"
-          required onChange={handleChange}
+          required
+          onChange={handleChange}
           name="displayName"
           value={displayName}
           />
