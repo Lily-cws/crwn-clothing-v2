@@ -6,7 +6,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 import {
   getFirestore,
@@ -37,6 +39,7 @@ googleProvider.setCustomParameters({
   prompt: "select_account"
 });
 
+// Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
@@ -89,6 +92,13 @@ export const signInAuthUserWithEmailAndPassword = async (email,password) => {
 
   return await signInWithEmailAndPassword(auth,email,password);
 };
+
+export const signOutUser = async () => await signOut(auth);
+
+// When a user successfully signs in, you can get information about the user in the observer.
+// List of user properties available https://firebase.google.com/docs/auth/admin/manage-users?hl=en&authuser=0
+// this is an open listener, hence beware of memory leak
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,callback);
 
 
 
